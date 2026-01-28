@@ -1,0 +1,11 @@
+services:
+  # 管理后台（静态站点）
+  - type: web
+    name: engineering-cost-admin
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
