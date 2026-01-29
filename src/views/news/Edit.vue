@@ -88,7 +88,9 @@ const loadDetail = async () => {
   loading.value = true
   try {
     const res = await newsAPI.getById(route.params.id)
-    Object.assign(form, res.data)
+    // 后端API返回: { success: true, data: { news: {...} } }
+    const newsData = res.data?.news || res.data
+    Object.assign(form, newsData)
     if (form.publish_date) {
       form.publish_date = new Date(form.publish_date)
     }

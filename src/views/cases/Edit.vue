@@ -112,7 +112,9 @@ const loadDetail = async () => {
   loading.value = true
   try {
     const res = await caseAPI.getById(route.params.id)
-    Object.assign(form, res.data)
+    // 后端API返回: { success: true, data: { case: {...} } }
+    const caseData = res.data?.case || res.data
+    Object.assign(form, caseData)
     if (form.completion_date) {
       form.completion_date = new Date(form.completion_date)
     }
