@@ -93,7 +93,7 @@ const form = reactive({
   content: '',
   client: '',
   services: '',
-  status: 'draft',
+  status: 'published',
   completion_date: new Date()
 })
 

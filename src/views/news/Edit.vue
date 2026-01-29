@@ -71,7 +71,7 @@ const form = reactive({
   excerpt: '',
   content: '',
   badge: '',
-  status: 'draft',
+  status: 'published',
   publish_date: new Date()
 })
 
