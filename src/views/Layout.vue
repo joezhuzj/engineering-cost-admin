@@ -36,6 +36,11 @@
           <el-icon><ChatLineRound /></el-icon>
           <template #title>咨询记录</template>
         </el-menu-item>
+
+        <el-menu-item index="/crawler">
+          <el-icon><MagicStick /></el-icon>
+          <template #title>爬虫管理</template>
+        </el-menu-item>
       </el-menu>
     </el-aside>
 

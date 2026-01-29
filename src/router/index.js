@@ -61,6 +61,12 @@ const routes = [
         name: 'Contacts',
         component: () => import('@/views/Contacts.vue'),
         meta: { title: '咨询记录' }
+      },
+      {
+        path: 'crawler',
+        name: 'Crawler',
+        component: () => import('@/views/Crawler.vue'),
+        meta: { title: '爬虫管理' }
       }
     ]
   }
