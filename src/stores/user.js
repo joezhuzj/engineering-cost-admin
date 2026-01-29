@@ -16,9 +16,12 @@ export const useUserStore = defineStore('user', {
     async login(credentials) {
       try {
         const res = await authAPI.login(credentials)
-        this.token = res.token
-        this.userInfo = res.user
-        localStorage.setItem('token', res.token)
+        // 后端API返回: { success: true, data: { token, user } }
+        const token = res.data?.token || res.token
+        const user = res.data?.user || res.user
+        this.token = token
+        this.userInfo = user
+        localStorage.setItem('token', token)
         return res
       } catch (error) {
         throw error
@@ -29,7 +32,8 @@ export const useUserStore = defineStore('user', {
     async getUserInfo() {
       try {
         const res = await authAPI.getCurrentUser()
-        this.userInfo = res.user
+        // 后端API返回: { success: true, data: { user } }
+        this.userInfo = res.data?.user || res.user
         return res
       } catch (error) {
         throw error
