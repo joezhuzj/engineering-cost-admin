@@ -2,10 +2,14 @@ import axios from 'axios'
 import { ElMessage } from 'element-plus'
 import router from '../router'
 
+// API基础URL - 生产环境使用Render后端地址
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 
+  (import.meta.env.PROD ? 'https://engineering-cost-backend.onrender.com/api' : '/api')
+
 // 创建axios实例
 const request = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
-  timeout: 10000
+  baseURL: API_BASE_URL,
+  timeout: 15000
 })
 
 // 请求拦截器

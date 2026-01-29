@@ -118,8 +118,9 @@ const loadList = async () => {
       ...searchForm
     }
     const res = await contactAPI.getList(params)
-    list.value = res.data || []
-    pagination.total = res.total || 0
+    // 后端API返回: { success: true, data: { contacts: [...], pagination: { total: ... } } }
+    list.value = res.data?.contacts || []
+    pagination.total = res.data?.pagination?.total || 0
   } catch (error) {
     ElMessage.error('加载失败')
   } finally {

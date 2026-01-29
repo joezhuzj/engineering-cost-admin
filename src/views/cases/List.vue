@@ -105,11 +105,13 @@ const loadList = async () => {
     const params = {
       page: pagination.page,
       limit: pagination.limit,
+      status: '', // 获取所有状态
       ...searchForm
     }
     const res = await caseAPI.getList(params)
-    list.value = res.data || []
-    pagination.total = res.total || 0
+    // 后端API返回: { success: true, data: { cases: [...], pagination: { total: ... } } }
+    list.value = res.data?.cases || []
+    pagination.total = res.data?.pagination?.total || 0
   } catch (error) {
     ElMessage.error('加载失败')
   } finally {

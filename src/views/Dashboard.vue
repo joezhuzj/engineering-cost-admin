@@ -122,15 +122,16 @@ const loadStats = async () => {
       contactAPI.getList({ page: 1, limit: 5 })
     ])
 
+    // 后端API返回结构: { success: true, data: { news/cases/contacts: [...], pagination: { total: ... } } }
     stats.value = {
-      newsCount: newsRes.total || 0,
-      casesCount: casesRes.total || 0,
-      contactsCount: contactsRes.total || 0,
+      newsCount: newsRes.data?.pagination?.total || 0,
+      casesCount: casesRes.data?.pagination?.total || 0,
+      contactsCount: contactsRes.data?.pagination?.total || 0,
       todayVisits: Math.floor(Math.random() * 1000)
     }
 
-    recentNews.value = newsRes.data || []
-    recentContacts.value = contactsRes.data || []
+    recentNews.value = newsRes.data?.news || []
+    recentContacts.value = contactsRes.data?.contacts || []
   } catch (error) {
     console.error('加载统计数据失败:', error)
   } finally {
