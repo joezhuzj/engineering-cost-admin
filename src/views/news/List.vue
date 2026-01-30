@@ -46,10 +46,11 @@
           {{ formatDate(row.createdAt) }}
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="180" fixed="right">
+      <el-table-column label="操作" width="240" fixed="right">
         <template #default="{ row }">
-          <el-button size="small" @click="handleEdit(row)">编辑</el-button>
-          <el-button size="small" type="danger" @click="handleDelete(row)">删除</el-button>
+          <el-button size="small" type="primary" link @click="handleView(row)">查看</el-button>
+          <el-button size="small" link @click="handleEdit(row)">编辑</el-button>
+          <el-button size="small" type="danger" link @click="handleDelete(row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -126,6 +127,10 @@ const handleReset = () => {
 
 const handleCreate = () => {
   router.push('/news/create')
+}
+
+const handleView = (row) => {
+  router.push(`/news/detail/${row.id}`)
 }
 
 const handleEdit = (row) => {
